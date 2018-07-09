@@ -7001,18 +7001,27 @@ module.exports = memoizeStringOnly;
 "use strict";
 
 
-var express = __webpack_require__(52);
-var app = express();
-var React = __webpack_require__(16);
+var _express = __webpack_require__(52);
 
-var _require = __webpack_require__(108),
-    renderToString = _require.renderToString;
+var _express2 = _interopRequireDefault(_express);
 
-var Home = __webpack_require__(117).default;
+var _react = __webpack_require__(16);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _server = __webpack_require__(108);
+
+var _Home = __webpack_require__(117);
+
+var _Home2 = _interopRequireDefault(_Home);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var app = (0, _express2.default)();
 var PORT = process.env.PORT || 3000;
 
 app.get('/', function (req, res) {
-  var content = renderToString(React.createElement(Home, null));
+  var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
   res.send(content);
 });
 
@@ -7021,7 +7030,7 @@ app.get('*', function (req, res) {
 });
 
 app.listen(PORT, function () {
-  console.log('app listening on port ' + PORT);
+  console.log("app listening on port " + PORT);
 });
 
 /***/ }),
