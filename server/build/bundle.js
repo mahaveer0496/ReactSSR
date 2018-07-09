@@ -7020,9 +7020,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _express2.default)();
 var PORT = process.env.PORT || 3000;
 
+app.use(_express2.default.static('public'));
+
 app.get('/', function (req, res) {
   var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
-  res.send(content);
+  var html = '<!DOCTYPE html>\n  <html lang="en"><head><meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <meta http-equiv="X-UA-Compatible" content="ie=edge">\n    <title>SSR</title>\n  </head>\n  <body>\n    <div id="root">' + content + '</div>\n    <script src="bundle.js"></script>\n  </body>\n  </html>';
+
+  res.send(html);
 });
 
 app.get('*', function (req, res) {
@@ -7030,7 +7034,7 @@ app.get('*', function (req, res) {
 });
 
 app.listen(PORT, function () {
-  console.log("app listening on port " + PORT);
+  console.log('app listening on port ' + PORT);
 });
 
 /***/ }),
@@ -22144,10 +22148,18 @@ var Home = function Home() {
   return _react2.default.createElement(
     'div',
     null,
+    _react2.default.createElement(
+      'button',
+      {
+        onClick: function onClick() {
+          console.log('wtf man');
+        }
+      },
+      'click me nigga'
+    ),
     'Welcome to home'
   );
 };
-
 exports.default = Home;
 
 /***/ })
